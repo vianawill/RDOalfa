@@ -1,0 +1,186 @@
+.navbar.navbar-fixed-right {
+  position: fixed;         /* Fixa a navbar */
+  top: 15px;                  /* Alinha ao topo */
+  right: 0;                /* Alinha à direita */
+  z-index: 1050;           /* Garante que a navbar fique sobre outros elementos */
+  width: auto;             /* A largura será ajustada automaticamente */  /* Cor de fundo, ajuste conforme necessário */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra para um efeito sutil */
+  padding: 10px 20px;      /* Espaçamento interno */
+}
+
+
+.sidebar {
+    width: 250px;
+    min-height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #233253 !important;
+    border-right: 5px solid #1b2e46;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+}
+
+#checkbox {
+    display: none;
+  }
+  
+  .toggle {
+    position: fixed;
+    /* Fixa o botão na tela */
+    top: 15px;
+    left: 260px;
+    width: 30px;
+    height: 40px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    transition-duration: .5s;
+  }
+  
+  .bars {
+    width: 100%;
+    height: 4px;
+    background-color: #4069d8;
+    border-radius: 4px;
+  }
+  
+  #bar2 {
+    transition-duration: .8s;
+  }
+  
+  #bar1,#bar3 {
+    width: 70%;
+  }
+  
+  #checkbox:checked + .toggle .bars {
+    position: absolute;
+    transition-duration: .5s;
+  }
+  
+  #checkbox:checked + .toggle #bar2 {
+    transform: scaleX(0);
+    transition-duration: .5s;
+  }
+  
+  #checkbox:checked + .toggle #bar1 {
+    width: 100%;
+    transform: rotate(45deg);
+    transition-duration: .5s;
+  }
+  
+  #checkbox:checked + .toggle #bar3 {
+    width: 100%;
+    transform: rotate(-45deg);
+    transition-duration: .5s;
+  }
+  
+  #checkbox:checked + .toggle {
+    transition-duration: .5s;
+    transform: rotate(180deg);
+  }
+
+/* Ajuste do conteúdo principal */
+.content {
+    margin-left: 250px;
+    padding: 20px;
+    transition: margin-left 0.3s ease-in-out;
+}
+
+/* Sidebar escondida */
+.sidebar.collapsed {
+    transform: translateX(-100%);
+}
+
+/* Conteúdo também colapsa */
+.content.collapsed {
+    margin-left: 0;
+}
+
+/* Botão ajustado quando sidebar está colapsada */
+.sidebar.collapsed~#checkbox {
+    left: 10px;
+    /* Move o botão para o lado esquerdo */
+}
+
+/* Botões organizados verticalmente */
+.button-container .btn {
+    text-align: left;
+    width: 100%;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        position: relative;
+    }
+
+    .content {
+        margin-left: 0;
+    }
+
+    #checkbox {
+        left: 10px;
+        /* Posição fixa no mobile */
+    }
+}
+
+/* Centralizar o perfil no canto superior direito */
+.profile-container {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    /* Centraliza o conteúdo do perfil */
+    z-index: 1100;
+}
+
+
+/* Ajuste para a navbar (perfil alinhado à direita) */
+.navbar .ml-auto {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+/* Ajuste do dropdown do perfil */
+.dropdown-menu-right {
+    right: 0 !important;
+    left: auto !important;
+}
+
+.perfil {
+  border: none;
+  position: fixed;             /* Fixa o ícone na posição da tela */
+  top: 20px;                   /* Margem superior */
+  right: 20px;                 /* Margem direita */
+  width: 50px;                 /* Largura do ícone */
+  height: 50px;                /* Altura do ícone */
+  border-radius: 50%;          /* Torna o elemento circular */
+  background-color:rgba(64,105,216,0.3);   /* Cor de fundo (cinza padrão Bootstrap) */
+  display: flex;               /* Centraliza o conteúdo interno */
+  align-items: center;         /* Centraliza verticalmente */
+  justify-content: center;     /* Centraliza horizontalmente */
+  box-shadow: 1px 1px 8px #4069d8; /* Adiciona uma sombra sutil */
+  cursor: pointer;             /* Cursor muda ao passar sobre o ícone */
+  transition: transform 0.3s ease, background-color 0.3s ease; /* Transições suaves */
+  z-index: 1050;               /* Garante que fique acima do conteúdo principal */
+}
+
+.perfil:hover {
+  background-color: #4069d8;   /* Cor de fundo ao passar o mouse */
+  transform: scale(1.1);       /* Aumenta ligeiramente ao passar o mouse */
+}
+
+.perfil i {
+  font-size: 24px;             /* Tamanho do ícone interno */
+  color: white;                /* Cor do ícone */
+}
+
