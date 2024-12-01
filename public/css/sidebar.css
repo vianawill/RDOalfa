@@ -129,58 +129,11 @@
     }
 }
 
-/* Centralizar o perfil no canto superior direito */
-.profile-container {
-    position: absolute;
-    top: 10px;
-    right: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-    /* Centraliza o conteúdo do perfil */
-    z-index: 1100;
-}
-
-
-/* Ajuste para a navbar (perfil alinhado à direita) */
-.navbar .ml-auto {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-/* Ajuste do dropdown do perfil */
-.dropdown-menu-right {
-    right: 0 !important;
-    left: auto !important;
-}
-
 .perfil {
   border: none;
   position: fixed;             /* Fixa o ícone na posição da tela */
   top: 20px;                   /* Margem superior */
   right: 20px;                 /* Margem direita */
   width: 50px;                 /* Largura do ícone */
-  height: 50px;                /* Altura do ícone */
-  border-radius: 50%;          /* Torna o elemento circular */
-  background-color:rgba(64,105,216,0.3);   /* Cor de fundo (cinza padrão Bootstrap) */
-  display: flex;               /* Centraliza o conteúdo interno */
-  align-items: center;         /* Centraliza verticalmente */
-  justify-content: center;     /* Centraliza horizontalmente */
-  box-shadow: 1px 1px 8px #4069d8; /* Adiciona uma sombra sutil */
-  cursor: pointer;             /* Cursor muda ao passar sobre o ícone */
-  transition: transform 0.3s ease, background-color 0.3s ease; /* Transições suaves */
   z-index: 1050;               /* Garante que fique acima do conteúdo principal */
 }
-
-.perfil:hover {
-  background-color: #4069d8;   /* Cor de fundo ao passar o mouse */
-  transform: scale(1.1);       /* Aumenta ligeiramente ao passar o mouse */
-}
-
-.perfil i {
-  font-size: 24px;             /* Tamanho do ícone interno */
-  color: white;                /* Cor do ícone */
-}
-

@@ -64,11 +64,12 @@
                         <!-- Dropdown de perfil para usuários logados -->
                         <div class="dropdown">
                             <!-- Label com o nome do usuário -->
-                            <label class="perfil-label">{{ Auth::user()->name }}</label>
+                            
                             
                             <!-- Botão para o dropdown -->
                             <button class="perfil" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <i class="fas fa-user"></i> <!-- Ícone de usuário (opcional) -->
+                                <label class="perfil-label">{{ Auth::user()->name }}</label>
                             </button>
                             
                             <!-- Menu dropdown -->
