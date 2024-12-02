@@ -134,6 +134,22 @@ body{
     margin-bottom: 20px;
   }
   
+  .card{
+    background-color: #233253;;
+    width: 100%;
+    padding: 5px;
+    border: 1px solid rgba(64,105,216,255);
+    font-size: 14px;
+    color: #ffffff;
+    transition: border-color 0.3s ease;
+    text-align: center;
+  }
+
+  .card-header{
+    font-weight: bold;
+    font-size: 25px;
+  }
+
   /* Formulário */
   form {
     display: flex;
@@ -188,7 +204,7 @@ body{
   button[type="submit"] {
     padding: 12px 20px;
     background-color: #007bff; /* Azul padrão */
-    color: #d3d2d2;
+    color: #1b2e46;
     border: none;
     border-radius: 5px;
     font-size: 16px;
@@ -222,4 +238,6 @@ body{
       min-width: 100%; /* Ocupa a largura total em telas pequenas */
     }
   }
+
+  
   
