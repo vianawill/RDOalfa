@@ -26,10 +26,8 @@
     <p class="heading">Olá, {{ Auth::user()->name }}
     </p><p class="para">
     Pronto para gerar um novo RDO e otimizar seu dia?
-    </p>
-    <a href="{{ url('rdos/create') }}">
+    </p><a href="{{ url('/') }}">
     <button class="btn">Read more</button>
-    </a>
   </div>
 </div>
 
