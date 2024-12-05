@@ -3,24 +3,34 @@
 @section('content')
 
 <link href="{{ asset('css/home.css') }}" rel="stylesheet">
+<link href="{{ asset('css/welcome.css') }}" rel="stylesheet">
+
+    <link href="{{ asset('css/home.css') }}" rel="stylesheet">
 
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header"><h5>{{ __('Bem vindo') }} {{ Auth::user()->name }}</h5></div>
-                <div class="card-body">
-                    @if (session('status'))
+
+    <div class="card">
+    <div class="card-body">
+                    @if (Auth::check())
                         <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
+                            {{ __('Você está logado!') }}
+                        </div>
+                    @else
+                        <div class="alert alert-warning" role="alert">
+                            {{ __('Você não está logado.') }} <br>
+                            {{ __('Faça login ou se cadastre.') }}
                         </div>
                     @endif
 
-                    {{ __('Você está logado!') }}
                 </div> 
-            </div>
-           
-        </div>
-    </div>
+    <p class="heading">Olá, {{ Auth::user()->name }}
+    </p><p class="para">
+    Pronto para gerar um novo RDO e otimizar seu dia?
+    </p>
+    <a href="{{ url('rdos/create') }}">
+    <button class="btn">Read more</button>
+    </a>
+  </div>
 </div>
+
 @endsection

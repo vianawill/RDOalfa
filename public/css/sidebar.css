@@ -1,19 +1,19 @@
 .navbar.navbar-fixed-right {
   position: fixed;         /* Fixa a navbar */
   top: 15px;                  /* Alinha ao topo */
-  right: 0;                /* Alinha à direita */
-  z-index: 1050;           /* Garante que a navbar fique sobre outros elementos */
+  right: 150px;                /* Alinha à direita */
+  z-index: 100;           /* Garante que a navbar fique sobre outros elementos */
   width: auto;             /* A largura será ajustada automaticamente */  /* Cor de fundo, ajuste conforme necessário */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra para um efeito sutil */
   padding: 10px 20px;      /* Espaçamento interno */
 }
 
 
 .sidebar {
+    border-radius: 2px;
     width: 250px;
     min-height: 100vh;
     position: fixed;
-    top: 0;
+    top: 85px;
     left: 0;
     background-color: #233253 !important;
     border-right: 2px solid #1b2e46;
@@ -27,9 +27,8 @@
   
   .toggle {
     position: fixed;
-    /* Fixa o botão na tela */
-    top: 15px;
-    left: 260px;
+    top: 21px;
+    left: 30px;
     width: 30px;
     height: 40px;
     cursor: pointer;
@@ -87,7 +86,7 @@
 .content {
     margin-left: 250px;
     padding: 20px;
-    transition: margin-left 0.3s ease-in-out;
+    transition: margin-left 0.4s ease-in-out;
 }
 
 /* Sidebar escondida */
@@ -102,12 +101,13 @@
 
 /* Botão ajustado quando sidebar está colapsada */
 .sidebar.collapsed~#checkbox {
-    left: 10px;
+    left: 15px;
     /* Move o botão para o lado esquerdo */
 }
 
 /* Botões organizados verticalmente */
 .button-container .btn {
+    margin-top: 2px;
     text-align: left;
     width: 100%;
 }
@@ -129,11 +129,111 @@
     }
 }
 
+/* Botão de perfil */
 .perfil {
+  position: fixed; 
+  top: 20px; /* Distância do topo */
+  right: 20px; /* Distância da borda direita */
+  transition: top 0.2s ease-in-out; /* Para animação suave ao aparecer/desaparecer */
+  text-align: center;
+  background-color: #4069d8; /* Cor de fundo do botão */
+  color: #fff; /* Cor do texto */
   border: none;
-  position: fixed;             /* Fixa o ícone na posição da tela */
-  top: 20px;                   /* Margem superior */
-  right: 20px;                 /* Margem direita */
-  width: 50px;                 /* Largura do ícone */
-  z-index: 1050;               /* Garante que fique acima do conteúdo principal */
+  border-radius: 20px; /* Botão arredondado */
+  padding: 5px 25px;
+  font-size: 15px;
+  font-weight: 750;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
 }
+
+/* Efeito hover no botão */
+.perfil:hover {
+  background-color: #6c757d; /* Tom mais claro no hover */
+}
+
+/* Estilização do label dentro do botão */
+.perfil-label {
+  font-size: 17px;
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+  width: 40px; /* Define a largura do menu */
+  padding: 10px; /* Reduz o espaçamento interno */
+  background-color: #fff; /* Cor de fundo branca */
+  border-radius: 5px; /* Cantos arredondados */
+  border: 1px solid #ddd; /* Borda leve */
+}
+
+/* Itens do dropdown */
+.dropdown-menu .dropdown-item {
+  font-size: 14px; /* Tamanho da fonte menor */
+  padding: 5px 10px; /* Reduz a altura do item */
+  color: #333; /* Cor do texto */
+  transition: background-color 0.3s ease;
+}
+
+/* Efeito hover nos itens do dropdown */
+.dropdown-menu .dropdown-item:hover {
+  background-color: #f0f0f0; /* Fundo mais claro no hover */
+  color: #000; /* Texto preto */
+}
+
+/* Botões de login e registro para visitantes */
+.btn-outline-primary,
+.btn-outline-success {
+  font-weight: 600;
+  border-radius: 20px; /* Arredonda os botões */
+  transition: all 0.3s ease;
+}
+
+/* Efeitos de hover nos botões */
+.btn-outline-primary:hover {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+.btn-outline-success:hover {
+  background-color: #28a745;
+  color: #fff;
+  border-color: #28a745;
+}
+
+#userDropdown{
+  position: fixed;
+}
+
+.navbar-logo img {
+  position: fixed; /* Fixa no viewport */
+  top: 1px;          /* Distância do topo */
+  left: 30px;         /* Distância da esquerda */
+  width: 105px;     /* Ajuste o tamanho conforme necessário */
+  height: auto;    /* Mantém a proporção da imagem */
+  transition: top 0.2s ease-in-out; /* Animação suave para o scroll */
+}
+
+#alfaid-logo-button {
+  background: none; /* Remove fundo do botão */
+  border: none; /* Remove bordas */
+  padding: 0; /* Remove o espaçamento interno */
+  cursor: pointer; /* Cursor de clique */
+  
+}
+
+.logo-image {
+  width: 100px; /* Largura da imagem */
+  height: auto; /* Mantém a proporção */
+  padding: 10px;
+  margin: 40px;
+  margin-top: 5px;
+}
+
+#alfaid-logo-button:hover .logo-image {
+  filter: brightness(0.9); /* Efeito de hover na imagem */
+}
+
+
+

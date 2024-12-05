@@ -116,7 +116,7 @@
                         <option value="{{ $equipamento->id }}">{{ $equipamento->nome }} - {{ $equipamento->tipo }}</option>
                     @endforeach
                 </select>
-                <small class="form-text text-muted">Selecione os equipamentos utilizados (mantenha pressionado Ctrl para selecionar múltiplos).</small>
+                <small class="form-text">Selecione os equipamentos utilizados (mantenha pressionado Ctrl para selecionar múltiplos).</small>
             </div>
 
             <!-- Mão de Obra Utilizada (Select com múltiplas opções) -->
@@ -127,7 +127,7 @@
                         <option value="{{ $maoObra->id }}">{{ $maoObra->funcao }} - Quantidade: {{ $maoObra->quantidade }}</option>
                     @endforeach
                 </select>
-                <small class="form-text text-muted">Selecione a mão de obra utilizada (mantenha pressionado Ctrl para selecionar múltiplos).</small>
+                <small class="form-text">Selecione a mão de obra utilizada (mantenha pressionado Ctrl para selecionar múltiplos).</small>
             </div>
             
             <button type="submit" class="btn btn-primary">Cadastrar RDO</button>

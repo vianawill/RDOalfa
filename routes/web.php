@@ -23,5 +23,10 @@ Route::middleware(['auth'])->group(function() {
     Route::resource('obras', ObraController::class);
     Route::resource('equipamentos', EquipamentoController::class);
     Route::resource('mao_obras', MaoObraController::class);
-    
+
+// Nova rota dentro do grupo auth
+Route::get('/rdos/create', function () {
+    return view('rdos.create'); // View específica
+})->name('rdos.create'); // Nome opcional para facilitar chamadas no Blade
+
 });
