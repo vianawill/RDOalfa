@@ -9,10 +9,6 @@ use App\Http\Controllers\RdoController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
 
-Route::get('/', function () {
-    return view('welcome'); // Exibe o formulário
-});
-
 Auth::routes(); //protege todas as rotas
 
 Route::middleware(['auth'])->group(function() {

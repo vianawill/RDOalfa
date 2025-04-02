@@ -1,140 +1,314 @@
 <!doctype html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
+<!-- INICIO HEAD -->
+@auth
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <!-- CSRF Token -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
-    <title>{{ config('app.name', 'RDO') }}</title>
-
-    <!-- Fonts -->
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
-
-    <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/sidebar.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
+
 </head>
+<!-- FIM HEAD -->
 
-<body>
-    <div id="app" class="d-flex">
-        <!-- Botão de Toggle da Sidebar fora do Sidebar -->
-        <div class="toggle-container">
-            <input type="checkbox" id="checkbox">
-            <label for="checkbox" class="toggle">
-                <div class="bars" id="bar1"></div>
-                <div class="bars" id="bar2"></div>
-                <div class="bars" id="bar3"></div>
-            </label>
-        </div>
+<nav class="fixed text-2xl top-5 px-1 right-4 z-50 flex items-center space-x-3">
 
-        <!-- Sidebar -->
-        <nav class="sidebar">
-            <div class="container py-4">
-                <!-- Botões da Sidebar (somente se logado) -->
-                @auth
-                <div class="button-container d-flex flex-column">
-                    <a href="{{ route('users.index') }}" class="btn btn-primary mb-2">Usuários</a>
-                    <a href="{{ route('rdos.index') }}" class="btn btn-primary mb-2">RDOs</a>
-                    <a href="{{ route('obras.index') }}" class="btn btn-primary mb-2">Obras</a>
-                    <a href="{{ route('equipamentos.index') }}" class="btn btn-primary mb-2">Equipamentos</a>
-                    <a href="{{ route('mao_obras.index') }}" class="btn btn-primary mb-2">Mão de Obra</a>
-                </div>
-                @endauth
-            </div>
-        </nav>
-
-        <!-- Conteúdo Principal -->
-        <main class="content flex-grow-1 py-4">
-            <!-- Barra superior com autenticação -->
-            <div class="navbar navbar-fixed-right">
-                <div class="container-fluid">
-                    <div class="d-flex justify-content-between align-items-center w-100">
-                        <!-- Logo dentro da Navbar -->
-                        <div class="navbar-logo" id="logo-navbar">
-                            <a class="navbar-brand" href="{{ url('/') }}">
-                                <button id="alfaid-logo-button">
-                                    <img src="{{ asset('img/navbar/Vector.png') }}" alt="Logo" class="logo-image">
-                                </button>
-                            </a>
-                        </div>
-
-                        @auth
-                        <div class="dropdown">
-                            <button class="perfil" id="userDropdown" data-toggle="dropdown" aria-haspopup="true"
-                                aria-expanded="false">
-                                <i class="fas fa-user"></i> <!-- Ícone de usuário -->
-                                <label class="perfil-label">{{ Auth::user()->name }}</label>
-                            </button>
-                            <div class="dropdown-menu" aria-labelledby="userDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
-                            </div>
-                        </div>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                        @endauth
-
-                        @guest
-                        <a href="{{ route('login') }}" class="btn btn-outline-primary mr-2">{{ __('Login') }}</a>
-                        @if (Route::has('register'))
-                        <a href="{{ route('register') }}" class="btn btn-outline-success">{{ __('Cadastrar-se') }}</a>
-                        @endif
-                        @endguest
-                    </div>
-                </div>
-            </div>
-
-            @yield('content')
-        </main>
+    <!-- Notificações -->
+    <div class="relative">
+        <i class="bi bi-bell-fill text-gray-200"></i>
+        <i class="bi bi-exclamation-circle-fill absolute text-base text-red-500 -top-1 -right-1"></i>
     </div>
 
-    <!-- Scripts -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Perfil -->
+    <div class="relative group">
+        <i class="bi bi-person-circle px-1 text-gray-200 "></i>
+        <div class="absolute left-1/2 transform -translate-x-1/2 mt-1 bg-gray-800 text-white text-sm px-3 py-1 rounded shadow-lg opacity-0 group-hover:opacity-100 transition-opacity">
+            {{ Auth::user()->name }}
+        </div>
+    </div>
 
-    <!-- Script para funcionalidade da Sidebar -->
-    <script>
-        // Alternar visibilidade da sidebar
-        document.getElementById('checkbox').addEventListener('click', function () {
-            document.querySelector('.sidebar').classList.toggle('collapsed');
-            document.querySelector('.content').classList.toggle('collapsed');
-        });
+</nav>
 
-        let prevScrollPos = window.pageYOffset; // Posição de rolagem anterior
+<!-- INICIO BODY -->
 
-        // Função onscroll unificada
-        window.onscroll = function () {
-            let currentScrollPos = window.pageYOffset; // Posição de rolagem atual
 
-            // Lógica para o botão "perfil"
-            let perfilButton = document.querySelector('.perfil');
-            if (prevScrollPos > currentScrollPos) {
-                perfilButton.style.top = "10px"; // Exibe o botão ao rolar para cima
-            } else {
-                perfilButton.style.top = "-50px"; // Esconde o botão ao rolar para baixo
-            }
+<body class="bg-fundo  font-[Poppins]">
+    @csrf
 
-            // Lógica para a logo "logo-navbar"
-            let logoNavbar = document.querySelector('#logo-navbar');
-            if (prevScrollPos > currentScrollPos) {
-                logoNavbar.style.top = "10px"; // Exibe a logo ao rolar para cima
-            } else {
-                logoNavbar.style.top = "-50px"; // Esconde a logo ao rolar para baixo
-            }
+    <!-- BOTAO OPEN SIDEBAR -->
+    <span class="fixed text-white text-3xl top-5 left-4 cursor-pointer rounded-2xl" onclick="Openbar()">
+        <i class="bi bi-filter-left px-1 bg-gray-900 rounded-2xl"></i>
+    </span>
 
-            // Atualiza a posição de rolagem anterior
-            prevScrollPos = currentScrollPos;
-        };
-    </script>
+    <!-- SIDEBAR -->
+    <div id="sidebar" class="sidebar fixed top-0 bottom-0 lg:left-0 left-[-300px] duration-600 ease-in-out
+    p-4 w-[300px] overflow-y-auto text-center bg-fundo shadow-xl h-screen border-r-2 border-bdinput transform">
+
+        <!-- DIV SIDEBAR -->
+        <div class=" text-gray-100 text-xl">
+
+            <!-- HEADER SIDEBAR -->
+            <div class="header-sidebar p-2.5  flex items-center rounded-md ">
+
+                <!-- LOGO AlfaID -->
+                <a href="{{ route('home') }}">
+                    <img class="ml-2 w-20 h-19"
+                        src="/img/navbar/Vector.png" alt="logo-alfaid">
+                </a>
+
+                <!-- BOTAO CLOSE SIDEBAR -->
+                <i class="bi bi-x-lg ml-auto cursor-pointer lg:hidden hover:bg-red-500 rounded" onclick="Openbar()"></i>
+
+            </div>
+            <!-- FIM HEADER SIDEBAR -->
+
+            <!-- DIVISORIA -->
+            <hr class="my-2 text-gray-700">
+
+            <!-- CONTAINER SIDEBAR -->
+            <div class="button-container">
+
+                <!-- INPUT PESQUISAR -->
+                <div class="p-2.5 mt-3 flex items-center rounded-md 
+                px-4 duration-300 cursor-pointer  bg-gray-700">
+
+                    <!-- ICONE -->
+                    <i class="bi bi-search text-sm"></i>
+
+                    <input id="searchInput" class="text-[15px] ml-4 w-full bg-transparent focus:outline-none" placeholder="Pesquisar" />
+
+                </div>
+
+                <!-- RDO´s -->
+                <div class=" sidebar-item p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-txtblue">
+
+                    <!-- ICONE -->
+                    <i class="bi bi-file-earmark-text-fill"></i>
+
+                    <div class="flex justify-between w-full items-center" onclick="dropDown()">
+
+                        <span class="text-[15px] ml-4 text-gray-200">
+                            RDO's
+                        </span>
+
+                        <!-- BOTAO SUBMENU -->
+                        <span class="text-sm transition-transform duration-300 rotate-180" id="arrow">
+                            <i class="bi bi-chevron-down"></i>
+                        </span>
+
+                    </div>
+
+                </div>
+
+                <!-- SUBMENU -->
+                <div class="leading-7 text-sm mt-2 w-4/5 mx-auto" id="submenu">
+
+                    <!-- SUBMENU MINHAS RDO's -->
+                    <a href="{{ route('rdos.index') }}" class="sidebar-item">
+
+                        <div class="flex items-center p-2.5 mt-2 rounded-md px-4 duration-300 cursor-pointer hover:bg-txtblue">
+
+                            <!-- ÍCONE -->
+                            <i class="bi bi-file-earmark-check text-lg mr-2"></i>
+
+                            <span>
+                                Minhas RDO's
+                            </span>
+
+                        </div>
+
+                    </a>
+
+                    <!-- SUBMENU GERAR RDO -->
+                    <a href="{{ route('rdos.create') }}" class="sidebar-item">
+
+                        <div class="flex items-center p-2.5 mt-2 rounded-md px-4 duration-300 cursor-pointer hover:bg-txtblue">
+
+                            <!-- ÍCONE -->
+                            <i class="bi bi-file-earmark-plus text-lg mr-2"></i>
+
+                            <span>
+                                Gerar RDO
+                            </span>
+
+                        </div>
+
+                    </a>
+
+                </div>
+
+                <!-- OBRAS -->
+                <a href="{{ route('obras.index') }}" class="sidebar-item">
+
+                    <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-txtblue">
+
+                        <!-- ICONE -->
+                        <i class="bi bi-cone-striped"></i>
+
+                        <span class="text-[15px] ml-4 text-gray-200">
+                            Obras
+                        </span>
+
+                    </div>
+
+                </a>
+
+                <!-- EQUIPAMENTOS -->
+                <a href="{{ route('equipamentos.index') }}" class="sidebar-item">
+
+                    <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-txtblue">
+
+                        <!-- ICONE -->
+                        <i class="bi bi-tools"></i>
+
+                        <span class="text-[15px] ml-4 text-gray-200">
+                            Equipamentos
+                        </span>
+
+                    </div>
+
+                </a>
+
+                <!-- MAO DE OBRA -->
+                <a href="{{ route('mao_obras.index') }}" class="sidebar-item">
+
+                    <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-txtblue">
+
+                        <!-- ICONE -->
+                        <i class="bi bi-wrench"></i>
+
+                        <span class="text-[15px] ml-4 text-gray-200">
+                            Mão de Obra
+                        </span>
+
+                    </div>
+
+                </a>
+
+                <!-- DIVISORIA -->
+                <hr class="my-4 text-gray-600">
+
+                <!-- NOTIFICAÇÕES -->
+                <a href="{{ route('rdos.index') }}" class="sidebar-item">
+
+                    <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-txtblue">
+
+                        <!-- ICONE -->
+                        <div class="relative">
+                            <i class="bi bi-bell-fill"></i>
+                            <i class="bi bi-exclamation-circle-fill absolute text-sm text-red-500 -top-1 -right-1"></i>
+                        </div>
+
+                        <span class="text-[15px] ml-4 text-gray-200">
+                            Notificações
+                        </span>
+
+                    </div>
+
+                </a>
+
+                <!-- USUÁRIOS -->
+                <a href="{{ route('users.index') }}" class="sidebar-item">
+
+                    <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-txtblue">
+
+                        <!-- ICONE -->
+                        <i class="bi bi-people-fill"></i>
+
+                        <span class="text-[15px] ml-4 text-gray-200">
+                            Usuários
+                        </span>
+
+                    </div>
+
+                </a>
+
+                <!-- NOME DO USUARIO -->
+                <div class="absolute bottom-2 left-0 w-full p-4">
+
+                    <label class="perfil-label text-sm text-gray-200">
+
+                        Olá,
+
+                        <span class="font-bold text-txtblue">
+                            {{ Auth::user()->name }}
+                        </span>
+
+                    </label>
+
+                    <!-- LOGOUT -->
+                    <a href="{{ route('logout') }}">
+                        <div class="w-40 mx-auto p-1 mt-2 flex items-center justify-center rounded-2xl px-4 duration-300 cursor-pointer hover:bg-red-500"
+                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+
+                            <!-- ICONE -->
+                            <i class="bi bi-box-arrow-in-right"></i>
+
+                            <span class="text-[12px] ml-4 text-gray-200">
+                                Logout
+                            </span>
+
+                        </div>
+
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                        @csrf
+                    </form>
+
+                </div>
+                <!-- FIM CONTAINER SIDEBAR -->
+
+            </div>
+            <!-- FIM DIV SIDEBAR -->
+
+        </div>
+        <!-- FIM SIDEBAR -->
+
 </body>
+@endauth
+<!-- FIM BODY -->
+
+<!-- SCRIPT -->
+<script>
+    // FUNÇÃO PARA ABRIR SUB MENU DO SIDEBAR
+    function dropDown() {
+        document.querySelector('#submenu').classList.toggle('hidden')
+        document.querySelector('#arrow').classList.toggle('rotate-180')
+    }
+    dropDown()
+
+    // FUNÇÃO PARA ABRIR E FECHAR O SIDEBAR
+    function Openbar() {
+        document.querySelector('.sidebar').classList.toggle('left-[-300px]')
+    }
+
+    // FUNCAO PARA A BARRA DE PESQUISA
+    document.getElementById("searchInput").addEventListener("input", function() {
+
+        let filter = this.value.toLowerCase(); // Obtém o valor digitado e transforma em minúsculas
+
+        let items = document.querySelectorAll(".sidebar-item"); // Seleciona todos os itens do menu
+
+        items.forEach(item => {
+
+            let text = item.textContent.toLowerCase(); // Obtém o texto do item
+
+            if (text.includes(filter)) {
+                item.style.display = ""; // Mostra o item se houver correspondência
+
+            } else {
+                item.style.display = "none"; // Esconde o item se não houver correspondência
+            }
+        });
+    });
+</script>
+<!-- FIM SCRIPT -->
 
 </html>
