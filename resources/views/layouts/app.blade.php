@@ -16,13 +16,13 @@
 
 </head>
 <!-- FIM HEAD -->
-
-<nav class="fixed text-2xl top-5 px-1 right-4 z-50 flex items-center space-x-3">
+<header>
+<nav class="fixed text-2xl top-5 px-1 right-4 z-50 flex items-center space-x-3 lg:hidden">
 
     <!-- Notificações -->
     <div class="relative">
         <i class="bi bi-bell-fill text-gray-200"></i>
-        <i class="bi bi-exclamation-circle-fill absolute text-base text-red-500 -top-1 -right-1"></i>
+        <i class="bi bi-exclamation-circle-fill absolute text-base text-red-600 -top-1 -right-1"></i>
     </div>
 
     <!-- Perfil -->
@@ -34,13 +34,14 @@
     </div>
 
 </nav>
-
+</header>
 <!-- INICIO BODY -->
-
 
 <body class="bg-fundo  font-[Poppins]">
     @csrf
-
+<main>
+@yield('content')
+</main>
     <!-- BOTAO OPEN SIDEBAR -->
     <span class="fixed text-white text-3xl top-5 left-4 cursor-pointer rounded-2xl" onclick="Openbar()">
         <i class="bi bi-filter-left px-1 bg-gray-900 rounded-2xl"></i>
@@ -63,7 +64,7 @@
                 </a>
 
                 <!-- BOTAO CLOSE SIDEBAR -->
-                <i class="bi bi-x-lg ml-auto cursor-pointer lg:hidden hover:bg-red-500 rounded" onclick="Openbar()"></i>
+                <i class="bi bi-x-lg ml-auto cursor-pointer lg:hidden hover:bg-red-600 rounded" onclick="Openbar()"></i>
 
             </div>
             <!-- FIM HEADER SIDEBAR -->
@@ -76,7 +77,7 @@
 
                 <!-- INPUT PESQUISAR -->
                 <div class="p-2.5 mt-3 flex items-center rounded-md 
-                px-4 duration-300 cursor-pointer  bg-gray-700">
+                px-4 duration-300 cursor-pointer  bg-bdinput">
 
                     <!-- ICONE -->
                     <i class="bi bi-search text-sm"></i>
@@ -195,14 +196,14 @@
                 <hr class="my-4 text-gray-600">
 
                 <!-- NOTIFICAÇÕES -->
-                <a href="{{ route('rdos.index') }}" class="sidebar-item">
+                <a href="{{ route('notificacoes.index') }}" class="sidebar-item">
 
                     <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-txtblue">
 
                         <!-- ICONE -->
                         <div class="relative">
                             <i class="bi bi-bell-fill"></i>
-                            <i class="bi bi-exclamation-circle-fill absolute text-sm text-red-500 -top-1 -right-1"></i>
+                            <i class="bi bi-exclamation-circle-fill absolute text-sm text-red-600 -top-1 -right-1"></i>
                         </div>
 
                         <span class="text-[15px] ml-4 text-gray-200">
@@ -233,8 +234,6 @@
                 <div class="absolute bottom-2 left-0 w-full p-4">
 
                     <label class="perfil-label text-sm text-gray-200">
-
-                        Olá,
 
                         <span class="font-bold text-txtblue">
                             {{ Auth::user()->name }}
@@ -270,7 +269,8 @@
 
         </div>
         <!-- FIM SIDEBAR -->
-
+       
+        
 </body>
 @endauth
 <!-- FIM BODY -->

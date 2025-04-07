@@ -8,7 +8,7 @@ export default {
   theme: {
     extend: {
         boxShadow:{
-          'customblue': '0px 4px 10px rgba(51, 102, 255, 0.5)',
+          'blue-custom': '0 0px 10px 2px rgba(51, 102, 255, 0.5)',
         },
         colors: {
           fundo: '#151A30',
@@ -17,11 +17,13 @@ export default {
           bdinput: '#101426',
           txtblue: '#3366FF',
         },
-      fontFamily: {
+        fontFamily: {
         poppins: ['Poppins', 'sans-serif'], // Exemplo com Poppins
-    },
+        },
     },
   },
-  plugins: [],
+  plugins: [
+    require('tailwind-scrollbar-hide')
+  ],
 }
 

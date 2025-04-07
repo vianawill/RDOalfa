@@ -15,7 +15,7 @@
 </style>
 
 <!-- INICIO BODY -->
-<body class="body-bg pt-9 md:pt-15 pb-1 px-2 md:px-0  ">
+<body class="body-bg pt-9 lg:pt-6 pb-1 px-2 md:px-0  ">
 
     <!-- INICIO HEADER -->
     <header class=" container max-w-lg mx-auto">

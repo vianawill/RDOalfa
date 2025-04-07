@@ -15,16 +15,10 @@
 </style>
 
 <!-- INICIO BODY -->
-<body class="body-bg pt-9 md:pt-15 pb-1 px-2 md:px-0  ">
+<body class="body-bg  pb-1 px-2 md:px-0  ">
 
     <!-- INICIO HEADER -->
-    <header class=" container max-w-lg mx-auto">
-
-        <!-- LOGO AlfaID -->
-        <img class=" mx-auto lg:w-21 lg:h-19 sm:w-18 sm:h-16"
-            src="/img/navbar/Vector.png" alt="logo-alfaid">
-
-    </header>
+   
     <!-- FIM HEADER -->
 
 

@@ -8,8 +8,8 @@
 
         <!-- Boas-vindas -->
         <div class="flex items-center justify-center space-x-3">
-            <i class="text-3xl bi bi-file-earmark-text-fill text-gray-200"></i>
-            <h1 class="text-3xl font-bold text-gray-200">RDO's</h1>
+            <i class="text-3xl bi bi-bell-fill text-gray-200"></i>
+            <h1 class="text-3xl font-bold text-gray-200">Obras</h1>
         </div>
 
         <!-- Barra de busca + botão -->
@@ -19,7 +19,7 @@
                 <div class="flex items-center bg-bdinput p-2.5 rounded-md w-full max-w-full sm:max-w-xl flex-1">
                     <i class="text-gray-100 bi bi-search text-sm"></i>
                     <input id="searchInput"
-                        class="text-[15px] ml-4 w-full bg-transparent focus:outline-none"
+                        class="text-gray-200 text-[15px] ml-4 w-full bg-transparent focus:outline-none"
                         placeholder="Pesquisar" />
                 </div>
 
@@ -31,7 +31,7 @@
                        w-10 h-10 sm:w-auto sm:h-auto
                        overflow-hidden transition-all duration-200">
                     <i class="bi bi-plus-circle text-lg sm:mr-2"></i>
-                    <span class="hidden sm:inline">Novo RDO</span>
+                    <span class="hidden sm:inline">Nova Obra</span>
                 </a>
             </div>
         </div>
